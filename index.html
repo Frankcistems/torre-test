@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torre</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https:unpkg.com/vue@3.0.2"></script>
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+
+        <!-- Header -->
+		<header id="header">
+            <h1><a href="index.html">torre.co</a></h1>
+			<nav class="links">
+				<ul>
+					<li><a href="#">Jobs/Gigs</a></li>
+					<li><a href="#">Preferences</a></li>
+					<li><a href="#">Messages</a></li>
+                    <li><a href="#">SIGN IN</a></li>
+				</ul>
+			</nav>
+			<nav class="main">
+				<ul>
+					<li class="search">
+						<a class="fa-search" href="#search">Search</a>
+						<form id="search" method="get" action="search.php">
+			    			<input type="text" name="query" placeholder="Search" />
+						</form>
+					</li>
+					<li class="menu">
+						<a class="fa-bars" href="#menu">Menu</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+        <!-- Sidebar -->
+        <section id="sidebar">
+
+            <!-- Intro -->
+            <section id="intro">
+                    <div class="profile"> <!-- PROFILE  -->
+                        <div class="profile-picture big-profile-picture clear">
+                            <img width="150px" alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg" >
+                        </div>
+                        <h1 class="user-name">Anne Hathaway</h1>
+                        <div class="profile-description">
+                            <p class="scnd-font-color">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        </div>
+                    </div>
+                    <header>
+                        <h2>Follow Anne on:</h2>
+                        <div class="footer-social-icons">
+                            <ul class="social-icons">
+                                <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+                                <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+                                <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="" class="social-icon"> <i class="fa fa-github"></i></a></li>
+                            </ul>
+                        </div>
+                    </header>
+
+            </section>        
+
+        </section>
+
+        <!-- Main -->
+        <div id="app" class="main-body">
+
+            <div class="box">
+                <h3>Skills and Interests</h3>
+                <h6>Top-rated Skills</h6>
+                <ul>
+                    <li v-for="skill in filteredSkills">
+                        <h4>{{ skill.title }}</h4>
+                        <p>{{ skill.list }}</p>
+                    </li>
+                </ul>
+                <ul v-if="showSkills">
+                    <li v-for="skill in skills" :class="{ fav: skill.isFav }" @click="toggleFav(skill)">
+                        <h4>{{ skill.title }}</h4>
+                        <p>{{ skill.list }}</p>
+                    </li>
+                </ul>
+            </div>
+            <button @click="toggleShowSkills">
+                <span v-if="showSkills">Hide Skills</span>
+                <span v-else>Show All</span>
+            </button>
+            <div class="box">
+                <h3>People with similar skills</h3>
+                <ul>
+                    <li v-for="person in people">
+                        <img :src="person.img" :alt="person.name" class="profile-picture small-profile-picture">
+                        <h4>{{ person.name }}</h4>
+                        <p>{{ person.position }}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!--
+            <div class="box" @dblclick="handleEvent">double click</div>
+            <div class="box" @mousemove="handleMousemove">position - {{ x }} {{ y }}</div>
+            -->
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
